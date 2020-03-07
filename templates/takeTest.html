@@ -17,13 +17,80 @@
 
             
         </form>
+   
 
-        {% for i in name %}
-        <div>
-            <img  src= {{i}}/><br>
-            <figcaption > {{name[i]}} </figcaption>
-        </div> 
-        {% endfor %}
+        <form action="{{ url_for('dec') }}" method="post" style="margin-top: 6rem;">
+            <h2 style="color: white;">playground !</h2>
+            <small style="color: white;">set your own values</small>
+            
+            <div class="row">
+                
+                <div class="col" style="padding-top: 2rem;">
+                    <center>
+                        <select class="form-control" id="exampleFormControlSelect1" name="tb1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+
+                          <select class="form-control" id="exampleFormControlSelect1" name="tb2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+
+                          <select class="form-control" id="exampleFormControlSelect1" name="tb3">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+
+                          <select class="form-control" id="exampleFormControlSelect1" name="tb4">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+
+                          <select class="form-control" id="exampleFormControlSelect1" name="tb5">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+
+                          <select class="form-control" id="exampleFormControlSelect1" name="tb6">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                    </center>
+                </div>
+                
+
+                
+                    <!-- learning rate, momentum, dampning, weight decay -->
+
+            </div>
+            <input class="btn btn-outline-primary" type="submit" style="margin-top: 2rem;">
+        </form>
+
+{% if pred is defined%}                
+{% for key,value in pred.items() %}
+<h1 style="color: black;">{{value}}</h1>
+{% endfor %}
+{% endif %}
+
         <script>
             var selDiv = "";
 

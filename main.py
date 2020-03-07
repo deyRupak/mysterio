@@ -112,10 +112,9 @@ app.config['UPLOAD_PATH'] = 'static/upload'
 def home():
     return render_template("index.html")
 
-
-@app.route('/results')
-def about():
-    return render_template("results.html")
+# @app.route('/results')
+# def about():
+#     return render_template("results.html")
 
 
 @app.route("/test")
@@ -125,17 +124,22 @@ def test():
 
 
      
-@app.route('/test', methods=['POST'])  
-def success():
-	shutil.rmtree("static/upload")
-	os.makedirs("static/upload")
-	uploaded_files = request.files.getlist("file[]")
-	for f in uploaded_files:
-		f.save(os.path.join(app.config['UPLOAD_PATH'], f.filename))
-	length=len(uploaded_files)
-	x=predict(model,pred_path,length)
-	print(x)
-	return render_template("results.html",name=x)
+@app.route('/test', methods=['POST']) 
+def dec():
+	if request.form == {}:
+		shutil.rmtree("static/upload")
+		os.makedirs("static/upload")
+		uploaded_files = request.files.getlist("file[]")
+		for f in uploaded_files:
+			f.save(os.path.join(app.config['UPLOAD_PATH'], f.filename))
+		length=len(uploaded_files)
+		x=predict(model,pred_path,length)
+		print(x)
+		return render_template("results.html",name=x)
+	else:
+		projectpath = request.form
+		print(projectpath)
+		return render_template("takeTest.html", pred=projectpath)
 
 
 
@@ -143,12 +147,6 @@ def success():
 def frame():
     return render_template("frames.html")
 
-
-@app.route('/results', methods=['POST'])
-def handle_data():
-    projectpath = request.form
-    print(projectpath)
-    return render_template("results.html", pred=projectpath)
 
 
 if __name__ == "__main__":

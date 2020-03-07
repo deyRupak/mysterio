@@ -69,7 +69,7 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url_for('about') }}" style="color: white;">About</a>
+                    
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('test') }}" style="color: white;">Take Test</a>
@@ -98,58 +98,32 @@
 
             <div class="row">
 
-                    <div class="col-8"> 
+                    <div class="col"> 
                         <!-- image -->
                         <div class="row">
-                            <div class="col">
+                            
                                 {% for i in name %}
+                                <div style="padding: 2rem;">
                                 <center>
-
-                                    
-        <!-- <div>
-            <img  src= {{i}}/><br>
-            <figcaption > {{name[i]}} </figcaption>
-        </div>  -->
-        
-
-                                <!-- <img src="{{ url_for('static', filename='11.jpg') }}" alt="" srcset=""><br><br>
-                                 -->
                                  <img  src= {{i}}/><br>
                                  <input type="text" name="" id="" value="{{name[i]}}">
-                                <!-- <h1 style="color: white;">{{name[i]}} </h1> -->
+                                
                                 </center>
-                                {% endfor %}
                             </div>
-                            <div class="col">
+                                {% endfor %}
+                            <!-- </div> -->
+                            <!-- <div class="col">
                                 
                                 <div class="row" style="margin-bottom: 4rem;">
                                     <table>
                                         <tbody>
 
                                             <tr>
-                                                <!-- <td style="padding: 0.5rem;">
+                                                <td style="padding: 0.5rem;">
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         onclick="addLabel()">Alter</button>
                                                 </td>
-                                                <td style="padding-left: 2rem;">
-                                                    <div class="dropdown show" id="dropdownShow" style="display: none;">
-                                                        <a class="btn btn-secondary dropdown-toggle" href="#"
-                                                            role="button" id="batchSize2" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false"
-                                                            style="background-color: rgb(39,38,38); border-color: transparent;">
-                                                            Choose Label
-                                                        </a>
-                                                        <div class="dropdown-menu" aria-labelledby="batchSize2">
-                                                            <a class="dropdown-item" href="#">Action</a>
-                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </td> -->
-                                                <td style="padding: 0.5rem;">
-                                                    <button type="button" class="btn btn-outline-success"
-                                                         id="addLab">Add</button>
-                                                </td>
+                                                
                                             </tr>
 
 
@@ -158,140 +132,31 @@
 
                                 </div>
                                 
-                            </div>
+                            </div> -->
+                        </div>
+
+                        <div class="row" style="margin-bottom: 4rem;">
+                            <table>
+                                <tbody>
+
+                                    <tr>
+                                        <td style="padding: 0.5rem;">
+                                            <button type="button" class="btn btn-outline-secondary">Alter</button>
+                                        </td>
+                                        
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
-
-                    <!-- <div class="col-4">
-                        <!-- stats -->
-
-                        
-
-                        <div class="row">
-                            <!-- <table class="table table-dark" style="background-color: transparent;">
-                                
-                                <tbody> -->
-                                     <!-- <img src="{{ url_for('static', filename='graph.png') }}" alt="" srcset=""> -->
-                                <!-- </tbody>
-                                
-                            </table> -->
-                        </div>
-
-
-                    </div> -->
 
             </div>
 
 
-                <form action="{{ url_for('handle_data') }}" method="post" style="margin-top: 6rem;">
-                    <h2 style="color: white;">playground !</h2>
-                    <small style="color: white;">set your own values</small>
-                    
-                    <div class="row">
-                        
-                        <div class="col" style="padding-top: 2rem;">
-                            <center>
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="epochValue"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                style="background-color: rgb(39,38,38); border-color: transparent;">
-                                Epoch Value
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="epochValue">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                            </center>
-                        </div>
-                        
-
-                        <div class="col" style="padding-top: 2rem;">
-                            <center>
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="batchSize"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    style="background-color: rgb(39,38,38); border-color: transparent;">
-                                    Batch Size
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="batchSize">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </center>
-                        </div>
-
-                        <div class="col" style="padding-top: 2rem;">
-                            <center>
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="learn"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    style="background-color: rgb(39,38,38); border-color: transparent;">
-                                    Learning Rate
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="learn">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </center>
-                        </div>
-
-                        <div class="col" style="padding-top: 2rem;">
-                            <center>
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="momentum"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    style="background-color: rgb(39,38,38); border-color: transparent;">
-                                    Momentum
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="momentum">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </center>
-                        </div>
-
-                        <div class="col" style="padding-top: 2rem;">
-                            <center>
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dampning"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    style="background-color: rgb(39,38,38); border-color: transparent;">
-                                    Dampening
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dampning">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </center>
-                        </div>
-
-                        <div class="col" style="padding-top: 2rem;">
-                            <center>
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="weight"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    style="background-color: rgb(39,38,38); border-color: transparent;">
-                                    Weight Decay
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="weight">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </center>
-                        </div>
-
-                        
-                            <!-- learning rate, momentum, dampning, weight decay -->
-
-                    </div>
-                    <input class="btn btn-outline-primary"type="submit" style="margin-top: 2rem;">
-                </form>
-    
-<!-- {% if pred is defined%}                
-{% for key,value in pred.items() %}
-<h1 style="color: white;">{{value}}</h1>
-{% endfor %}
-{% endif %} -->
+                
 
 
         </div>
@@ -330,12 +195,6 @@
             });
             };</script>
 
-        <script>
-            function addLabel(){
-                // document.getElementById("selectLab").style.display = 'block';
-                document.getElementById("addLab").style.display = 'block';
-                document.getElementById("dropdownShow").style.display = 'block';
-            }</script>
 
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
