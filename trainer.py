@@ -4,7 +4,7 @@ import pathlib
 from torch.utils.data import DataLoader
 from torchvision import *
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 
 transformtrain = transforms.Compose([
     transforms.Resize((150, 150)),
