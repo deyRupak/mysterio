@@ -18,6 +18,12 @@
             
         </form>
 
+        {% for i in name %}
+        <div>
+            <img  src= {{i}}/><br>
+            <figcaption > {{name[i]}} </figcaption>
+        </div> 
+        {% endfor %}
         <script>
             var selDiv = "";
 
