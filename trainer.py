@@ -1,72 +1,86 @@
+# import useful libraries
+import numpy as np # linear algebra
+from matplotlib import pyplot as plt
+from PIL import Image
+from glob import glob
+import os
+
+# import pytorch modules
 import torch
-from torch import nn
-import pathlib
+from torch import nn, optim
+import torch.nn.functional as F
 from torch.utils.data import DataLoader
-from torchvision import *
+from torchvision import models, transforms
+from torchvision.datasets import ImageFolder
 
-device = torch.device("cpu")
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-transformtrain = transforms.Compose([
+# define paths
+train_path = './intel-image-classification/seg_train/seg_train'
+test_path = './intel-image-classification/seg_test/seg_test'
+pred_path = './intel-image-classification/seg_pred/seg_pred'
+
+transformer = transforms.Compose([
     transforms.Resize((150, 150)),
-    transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
-    transforms.Normalize((.5, .5, .5), (.5, .5, .5))
-])
-transformtest = transforms.Compose([
-    transforms.Resize((150, 150)),
-    transforms.ToTensor(),
-    transforms.Normalize((.5, .5, .5), (.5, .5, .5))
+    transforms.Normalize([0.5, 0.5, 0.5],
+                         [0.5, 0.5, 0.5])
 ])
 
-trainds = datasets.ImageFolder('./intel-image-classification/seg_train/seg_train', transform=transformtrain)
-testds = datasets.ImageFolder('./intel-image-classification/seg_test/seg_test', transform=transformtest)
+train_loader = DataLoader(
+    ImageFolder(train_path, transform=transformer),
+    num_workers=8, batch_size=200, shuffle=True
+)
 
-trainloader = DataLoader(trainds, batch_size=256, shuffle=True)
-testloader = DataLoader(testds, batch_size=64, shuffle=False)
+test_loader = DataLoader(
+    ImageFolder(test_path, transform=transformer),
+    num_workers=8, batch_size=200, shuffle=True
+)
 
-root = pathlib.Path('./intel-image-classification/seg_train')
-classes = sorted([j.name.split('/')[-1] for j in root.iterdir()])
 
-model = models.vgg19(pretrained=True).to(device)
-for param in model.features.parameters():
+resnet_model = models.resnet50(pretrained=True)
+
+# freeze all parameters in ResNet so we won't have to retrain them
+for param in resnet_model.parameters():
     param.requires_grad = False
-    
-model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(classes)).to(device)
-criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.classifier.parameters(), lr=0.00001, weight_decay=0.01)
 
-trainlosses = []
-testlosses = []
-for e in range(50):
-    trainloss = 0
-    traintotal = 0
-    trainsuccessful = 0
-    for traininput, trainlabel in trainloader:
-        traininputs, trainlabels = traininput.to(device), trainlabel.to(device)
-        optimizer.zero_grad()
-        trainpredictions = model(traininputs)
-        _, trainpredict = torch.max(trainpredictions.data, 1)
-        loss = criterion(trainpredictions, trainlabels)
-        loss.backward()
-        optimizer.step()
-        trainloss += loss.item()
-        traintotal += trainlabels.size(0)
-        trainsuccessful += (trainpredict == trainlabels).sum().item()
-    else:
-        testloss = 0
-        testtotal = 0
-        testsuccessful = 0
+# replace the last layer with another one that will be trainable
+in_shape = resnet_model.fc.in_features
+resnet_model.fc = nn.Linear(in_shape, 6)
+
+error = nn.CrossEntropyLoss()
+opt = optim.Adam(resnet_model.parameters())
+
+def train(model, train_loader, n_epochs=100):
+    model = model.to(device)
+    model.train()
+    
+    for epoch in range(n_epochs):
+        epoch_loss = 0
+        for x, y in train_loader:
+            x, y = x.to(device), y.to(device)
+            opt.zero_grad()
+            out = model(x)
+            loss = error(out, y)
+            loss.backward()
+            opt.step()
+            epoch_loss += loss.item()        
+        if epoch % int(0.1*n_epochs) == 0:
+            print(f'epoch: {epoch} \t Train Loss: {epoch_loss:.4g}')
+            
+train(resnet_model, train_loader)
+
+
+def test(model, test_loader):
+    model = model.to(device)
+    model.eval()
+    loss = 0
+    for x, y in test_loader:
         with torch.no_grad():
-            for testinput, testlabel in testloader:
-                testinputs, testlabels = testinput.to(device), testlabel.to(device)
-                testpredictions = model(testinputs)
-                _, testpredict = torch.max(testpredictions.data, 1)
-                tloss = criterion(testpredictions, testlabels)
-                testloss += tloss.item()
-                testtotal += testlabels.size(0)
-                testsuccessful += (testpredict == testlabels).sum().item()
-        trainlosses.append(trainloss/len(trainloader))
-        testlosses.append(testloss/len(testloader))
-        print('Train Accuracy %{:.2f}'.format(100*trainsuccessful/traintotal))
-        print('Test Accuracy %{:.2f}'.format(100*testsuccessful/testtotal))
+            out = model(x.to(device)).cpu()
+        loss += error(out, y)
+        
+    print(f'Test loss: {loss:.4g}')
+    
+test(resnet_model, test_loader)
 
