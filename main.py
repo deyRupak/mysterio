@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import pickle
 
 
@@ -18,9 +18,9 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/about")
+@app.route('/results')
 def about():
-    return render_template("about.html")
+    return render_template("results.html")
 
 
 @app.route("/test")
@@ -28,6 +28,12 @@ def test():
     return render_template("takeTest.html")
 
 
+@app.route('/results', methods=['POST'])
+def handle_data():
+    projectpath = request.form
+    print(projectpath)
+    return render_template("results.html", pred=projectpath)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
-    # We made two new changes
