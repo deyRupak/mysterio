@@ -8,13 +8,125 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
+<style>
+    .btn-outline-dark:hover {
+        background-color: rgb(39, 38, 38);
+        -webkit-box-shadow: -1px 0px 17px 4px rgba(253, 106, 2, 1);
+        -moz-box-shadow: -1px 0px 17px 4px rgba(253, 106, 2, 1);
+        box-shadow: -1px 0px 17px 4px rgba(253, 106, 2, 1);
+        transition-delay: 1.5s ease;
+    }
 
-        <div class="jumbotron">
-            <h2>YKTH</h2>
-            <small>reflexio</small>
+    html, body {
+
+    margin
+    : 0;
+
+    padding
+    : 0;
+    }
+    .background {
+
+    position
+    :
+    absolute
+    ;
+
+    display
+    :
+    block
+    ;
+
+    top
+    : 0;
+
+    left
+    : 0;
+
+    z-index
+    : -1;
+    }
+</style>
+
+
+</head>
+
+<body style="background-color: rgb(39, 38, 38);">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}" style="color: white;">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="" srcset="" width="100px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('about') }}" style="color: white;">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('test') }}" style="color: white;">Take Test</a>
+                </li>
+                <li class="nav-item">
+                    <!-- <a class="nav-link" href="#" style="color: white;">Link</a> -->
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+        <!-- banner -->
+        <div class="jumbotron jumbotron-fluid" style="background-color: transparent; margin-top: 6rem;">
+            <center>
+                <h1 class="display-1" style="color: white;">
+                    <span class="display-4">project</span><span style="color: #FD6A02">&nbsp;<b>MYSTERIO</b></span></h1>
+                <!-- <p class="lead" style="color: white;">project_desc</p> -->
+                <hr class="my-4" style="background-color: white; width: 70%" />
+                <p class="lead">
+                    <a class="btn btn-outline-dark btn-lg" href="{{ url_for('test')}}" role="button"
+                        style="color: #FD6A02; border-color: #FD6A02;">Launch!</a>
+                </p>
+            </center>
         </div>
 
+        <canvas class="background"></canvas>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+
+        <script>
+            window.
+            onload
+            = function() {
+            Particles.
+            init
+            ({
+            selector:
+            '.background',
+            color: '#FFF',
+            responsive: [
+            {
+            breakpoint:
+            7680
+            ,
+            options: {
+            maxParticles:
+            200
+            ,
+            color:
+            '#F3A840'
+            ,
+            connectParticles:
+            true,
+            minDistance: '100'
+            }
+            }]
+
+
+            });
+            };
+        </script>
 
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
