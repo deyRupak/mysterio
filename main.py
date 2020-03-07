@@ -1,8 +1,15 @@
 from flask import Flask, render_template, request
 import pickle
+import os
+import pickle
+from PIL import Image
+
+
+UPLOAD_FOLDER = 'uploads'
 
 
 app = Flask(__name__)
+app.config['UPLOAD_PATH'] = 'static/upload'
 
 
 #def ValuePredictor(img_to_check):
@@ -12,6 +19,18 @@ app = Flask(__name__)
     #pred_class,pred_idx,outputs = learn.predict(img_to_check)
 
     #return str(pred_class)
+
+
+
+def ValuePredictor(folder): 
+    #to_predict = np.array(to_predict_list).reshape(1, 12) 
+    loaded_model = pickle.load(open("model/resnet.pkl", "rb")) 
+    result = loaded_model.predict(folder) 
+    #return result[0] 
+
+
+
+
 
 @app.route("/")
 def home():
@@ -25,7 +44,28 @@ def about():
 
 @app.route("/test")
 def test():
-    return render_template("takeTest.html")
+    return render_template("takeTest.html",result="")
+
+
+
+     
+@app.route('/test', methods=['POST'])  
+def success():
+    uploaded_files = request.files.getlist("file[]")
+    # x=[1,2,3]
+    for f in uploaded_files:
+        f.save(os.path.join(app.config['UPLOAD_PATH'], f.filename))
+
+        #print (f)
+
+        img=Image.open(open("static/upload/aisehi.png", 'rb'))    
+        result = ValuePredictor(img)
+        print(result)
+
+        print(23)
+
+    return render_template("takeTest.html",result=result)
+
 
 
 @app.route("/frames")
