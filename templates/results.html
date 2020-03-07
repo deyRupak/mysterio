@@ -118,8 +118,8 @@
                                 <button type="button" class="btn btn-outline-success">Correct</button>
                                 <button type="button" class="btn btn-outline-secondary" onclick="addLabel()">Alter</button>
                             </div>
-
-                            <select class="form-control" id="exampleFormControlSelect1" style="margin-top: 2rem;">
+                            
+                            <select class="form-control" id="selectLab" style="margin-top: 2rem; display: none;">
                                 <option>Lab1</option>
                                 <option>Lab2</option>
                                 <option>Lab3</option>
@@ -127,6 +127,9 @@
                                 <option>Lab5</option>
                                 <option>Lab6</option>
                             </select>
+                            <button type="button" class="btn btn-outline-success" 
+                                style="margin-top: 1rem; display: none;" id="addLab">Add</button>
+                            
                         </div>
 
                         <div class="row">
@@ -235,7 +238,8 @@
 
         <script>
             function addLabel(){
-
+                document.getElementById("selectLab").style.display = 'block';
+                document.getElementById("addLab").style.display = 'block';
             }</script>
 
 

@@ -28,6 +28,11 @@ def test():
     return render_template("takeTest.html")
 
 
+@app.route("/frames")
+def frame():
+    return render_template("frames.html")
+
+
 @app.route('/results', methods=['POST'])
 def handle_data():
     projectpath = request.form

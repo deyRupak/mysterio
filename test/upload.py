@@ -13,17 +13,17 @@ app.config['UPLOAD_PATH'] = 'static/uploadd'
 
 @app.route('/success', methods = ['GET'])  
 def upload():  
-    return render_template("file_upload_form.html",name='',c='')  
+    return render_template("file_upload_form.html",name='')  
      
-@app.route('/success', methods = ['POST'])  
+@app.route('/success', methods=['POST'])  
 def success():
     uploaded_files = request.files.getlist("file[]")
-    x=[1,2,3]
+    # x=[1,2,3]
     for f in uploaded_files:
         f.save(os.path.join(app.config['UPLOAD_PATH'], f.filename))
 
         print (f)
-    return render_template("file_upload_form.html", name=uploaded_files, c=x)
+    return render_template("file_upload_form.html", name=uploaded_files, c="done")
 
 # def success():  
 #     if request.method == 'POST':  
