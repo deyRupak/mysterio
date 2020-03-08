@@ -1,10 +1,10 @@
 # MISSION TASVEER
 
-The project aims at creating a platform for training, labeling and deploying and retraining image classification models.
+A platform for training, labeling, deploying and retraining image classification model.
 
 
 
-## Approach & Soluchan
+## Approach & Solution
 -The trained model classifies images based on the dataset provided. 
 
 -The UI can run inference using the model trained above on 128 unseen and unlabeled images uploaded at the same time.
@@ -48,7 +48,7 @@ pip install <dependency_name>
 ```
 Change the directory :
 ```
-cd dj
+cd mission_tasveer
 ```
 Run main.py as:
 ```
