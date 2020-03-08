@@ -47,7 +47,7 @@ error = nn.CrossEntropyLoss()
 opt = optim.Adam(model.parameters())
 a=[]
 b=[]
-def train(model, train_loader, n_epochs=100):
+def train(model, train_loader, n_epochs,lr,momentum,batch_size):
 	model = model.to(device)
 	model.train()
 	for epoch in range(n_epochs):
@@ -158,6 +158,7 @@ def frame():
 def edit():
 	a=[]
 	b=[]
+	req = request.form
 	dest_path='static/edit'
 	x=request.form
 	for val in x:	
@@ -172,7 +173,8 @@ def edit():
     num_workers=8, batch_size=200, shuffle=True
 	)
 	print("edit function")
-	train(model,train_loader)
+	print(req)
+	train(model,train_loader,int(req['epoch']),float(req['lr']),float(req['moment']),int(req['batch']))
 	#fig,ax= plt.subplot()
 	#ax.plot(a,b)
 	#ax.set(xlabel="Loss",ylabel="Epoch")
