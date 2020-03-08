@@ -1,0 +1,60 @@
+    <!-- <form action="{{ url_for('dec') }}" method="post" style="margin-top: 6rem;">
+        <h2 style="color: white;">playground !</h2>
+        <small style="color: white;">set your own values</small>
+        
+        <div class="row">
+            <div class="col" style="color: aliceblue;">
+                <select class="form-control" id="exampleFormControlSelect1" name="tb1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            </div>
+            <div class="col" style="color: aliceblue;">
+                <select class="form-control" id="exampleFormControlSelect1" name="tb2">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            </div>
+            <div class="col" style="color: aliceblue;">
+                <select class="form-control" id="exampleFormControlSelect1" name="tb3">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            </div>
+            <div class="col" style="color: aliceblue;">
+                <select class="form-control" id="exampleFormControlSelect1" name="tb4">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            </div>
+            <div class="col" style="color: aliceblue;">
+                <select class="form-control" id="exampleFormControlSelect1" name="tb5">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            </div>
+            <div class="col" style="color: aliceblue;">
+                <select class="form-control" id="exampleFormControlSelect1" name="tb6">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+            </div>
+        </div> -->

@@ -66,7 +66,7 @@ def train(model, train_loader, n_epochs=100):
 			fig,ax= plt.subplots()
 			ax.plot(a,b)
 			ax.set(xlabel="Training Loss",ylabel="Epoch")
-			fig.savefig("static/loss.png")
+			fig.savefig("static/loss2.png")
 
 			#print(a,b)
 			#print(f'epoch: {epoch} \t Train Loss: {epoch_loss:.4g}')
@@ -154,7 +154,7 @@ def frame():
     return render_template("frames.html")
 
 
-@app.route('/result', methods=['POST'])
+@app.route('/test2', methods=['POST'])
 def edit():
 	a=[]
 	b=[]
@@ -171,6 +171,7 @@ def edit():
     ImageFolder(train_path, transform=transformer),
     num_workers=8, batch_size=200, shuffle=True
 	)
+	print("edit function")
 	train(model,train_loader)
 	#fig,ax= plt.subplot()
 	#ax.plot(a,b)
