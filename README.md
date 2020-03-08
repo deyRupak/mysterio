@@ -40,7 +40,7 @@ A platform for training, labeling, deploying and retraining image classification
 
 Clone the repository :
 ```
-git clone https://github.com/deyRupak/
+git clone https://github.com/deyRupak/mysterio.git
 ```
 Install the dependencies :
 ```
