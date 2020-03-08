@@ -54,7 +54,9 @@
 <body style="background-color: rgb(39, 38, 38);">
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        
+        <a class="navbar-brand" href="{{ url_for('home') }}" style="color: white;">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="" srcset="" width="100px">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

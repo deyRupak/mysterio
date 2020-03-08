@@ -7,83 +7,10 @@
 </head>
 <body>
     
-        <form id="myForm" method="post" enctype="multipart/form-data">
-
-            Files: <input type="file" id="files" name="file[]" multiple><br />
-
-            <div id="selectedFiles"></div>
-
-            <input type="submit">
-
-            
-        </form>
+        
    
 
-        <form action="{{ url_for('dec') }}" method="post" style="margin-top: 6rem;">
-            <h2 style="color: white;">playground !</h2>
-            <small style="color: white;">set your own values</small>
-            
-            <div class="row">
-                
-                <div class="col" style="padding-top: 2rem;">
-                    <center>
-                        <select class="form-control" id="exampleFormControlSelect1" name="tb1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-
-                          <select class="form-control" id="exampleFormControlSelect1" name="tb2">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-
-                          <select class="form-control" id="exampleFormControlSelect1" name="tb3">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-
-                          <select class="form-control" id="exampleFormControlSelect1" name="tb4">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-
-                          <select class="form-control" id="exampleFormControlSelect1" name="tb5">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-
-                          <select class="form-control" id="exampleFormControlSelect1" name="tb6">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                    </center>
-                </div>
-                
-
-                
-                    <!-- learning rate, momentum, dampning, weight decay -->
-
-            </div>
-            <input class="btn btn-outline-primary" type="submit" style="margin-top: 2rem;">
-        </form>
+        
 
 {% if pred is defined%}                
 {% for key,value in pred.items() %}
@@ -91,32 +18,190 @@
 {% endfor %}
 {% endif %}
 
-        <script>
-            var selDiv = "";
-
-            document.addEventListener("DOMContentLoaded", init, false);
-
-            function init() {
-                document.querySelector('#files').addEventListener('change', handleFileSelect, false);
-                selDiv = document.querySelector("#selectedFiles");
-            }
-
-            function handleFileSelect(e) {
-
-                if (!e.target.files) return;
-
-                selDiv.innerHTML = "";
-
-                var files = e.target.files;
-                for (var i = 0; i < files.length; i++) {
-                    var f = files[i];
-
-                    selDiv.innerHTML += f.name + "<br/>";
-
-                }
-
-            }
-        </script>
+        
         
 </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<style>
+    .btn-outline-dark:hover {
+        background-color: rgb(39, 38, 38);
+        -webkit-box-shadow: -1px 0px 17px 4px rgba(253, 106, 2, 1);
+        -moz-box-shadow: -1px 0px 17px 4px rgba(253, 106, 2, 1);
+        box-shadow: -1px 0px 17px 4px rgba(253, 106, 2, 1);
+        transition-delay: 1.5s ease;
+    }
+
+    html,
+    body {
+
+        margin: 0;
+
+        padding: 0;
+    }
+
+    .background {
+
+        position:
+            absolute;
+
+        display:
+            block;
+
+        top: 0;
+
+        left: 0;
+
+        z-index: -1;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
+
+
+</head>
+
+<body style="background-color: rgb(39, 38, 38);">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('test') }}" style="color: white;">Take Test</a>
+                </li>
+                <li class="nav-item">
+                    <!-- <a class="nav-link" href="#" style="color: white;">Link</a> -->
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+        <!-- banner -->
+        <div class="jumbotron jumbotron-fluid" style="background-color: transparent; padding: 0; margin-bottom: 4rem;">
+            <!-- <center> -->
+            <h1 class="display-1" style="color: white;">
+                <span class="display-4" style="color: #FD6A02">image To Classify</span></h1>
+
+            <hr class="my-4" style="background-color: white;" />
+            <!-- </center> -->
+        </div>
+
+        <form id="myForm" method="post" enctype="multipart/form-data">
+
+            <div class="row">
+                <div class="col"> <span style="color: white;"> 
+                    Files: </span><input type="file" id="files" name="file[]" multiple><br />
+                
+                    <input type="submit" style="margin-top: 2rem;">
+                </div>
+                <div class="col"><div id="selectedFiles" style="color: white;"></div></div>
+            </div>
+           
+           
+
+            
+        </form>
+
+    
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+  
+    <script>
+        window.
+            onload
+            = function () {
+                Particles.
+                    init
+                    ({
+                        selector:
+                            '.background',
+                        color: '#FFF',
+                        responsive: [
+                            {
+                                breakpoint:
+                                    7680
+                                ,
+                                options: {
+                                    maxParticles:
+                                        200
+                                    ,
+                                    color:
+                                        '#F3A840'
+                                    ,
+                                    connectParticles:
+                                        true,
+                                    minDistance: '100'
+                                }
+                            }]
+
+
+                    });
+            };</script>
+
+
+<script>
+    var selDiv = "";
+
+    document.addEventListener("DOMContentLoaded", init, false);
+
+    function init() {
+        document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+        selDiv = document.querySelector("#selectedFiles");
+    }
+
+    function handleFileSelect(e) {
+
+        if (!e.target.files) return;
+
+        selDiv.innerHTML = "";
+
+        var files = e.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var f = files[i];
+
+            selDiv.innerHTML += f.name + "<br/>";
+            
+        }
+
+    }
+</script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        </script>
+</body>
+
 </html>
