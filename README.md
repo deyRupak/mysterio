@@ -1,6 +1,11 @@
-# MISSION TASVEER
+# mysterio
 
+<p align="center">
 A platform for training, labeling, deploying and retraining image classification model.
+
+<br></br>
+<img src="./static/main.png" align="center">
+</p>
 
 
 
@@ -16,6 +21,13 @@ A platform for training, labeling, deploying and retraining image classification
 -The UI have an option to change the parameters of training. Parameters could be learning rate, number of filters, filter size etc. 
 
 -The newly trained model is available for use by the UI to run another round of inference.
+
+<table align="center">
+   <tr>
+      <th><img src="./static/one.png" width="400px" ></th>
+      <th><img src="./static/two.png" width="510px" ></th>
+   </tr>
+</table>
 
 	
 ## Project Structure
