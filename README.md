@@ -60,7 +60,7 @@ pip install <dependency_name>
 ```
 Change the directory :
 ```
-cd mission_tasveer
+cd mysterio
 ```
 Run main.py as:
 ```
